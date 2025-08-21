@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Spacer()
-            TabBarView()
+//            TabBarView(selection: )
         }
         .background(Image(.background))
     }

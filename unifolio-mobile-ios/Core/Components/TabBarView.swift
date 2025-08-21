@@ -8,93 +8,52 @@
 import SwiftUI
 
 struct TabBarView: View {
+
+    @Binding var selection: TabBarItem
+
     var body: some View {
-        
+
         HStack(spacing: 40) {
-            homeTabItem
-            targetTabItem
-            uploadTabItem
-            analysisTabItem
-            moreTabItem
+            ForEach(Tabs.defaultTabs, id: \.self) { tab in
+                Button {
+                    selection = tab
+                } label: {
+                    tabView(tab: tab)
+                }
+                .tint(selection == tab ? .secondaryViolet : .secondaryGray)
+            }
         }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 25)
-        .background(
-            Capsule()
-                .fill(Color.theme.secondaryBlack)
-                .overlay(
-                    Capsule()
-                        .strokeBorder(strokeGradient, lineWidth: 1).opacity(0.3)
-                )
-            
-        )
+        .tabBarModifier()
+        
     }
 }
 
 #Preview {
-    TabBarView()
+    TabBarView(selection: .constant(TabBarItem(name: .home, image: .home)))
 }
 
 extension TabBarView {
-    private var homeTabItem: some View {
-        VStack {
-            Image(.home)
+    @ViewBuilder
+    private func tabView(tab: TabBarItem) -> some View {
+        if tab.name == .upload {
+            VStack {
+                Image(uiImage: tab.image)
+            }
+            .uploadButtonModifier()
+        } else {
+            VStack {
+                Image(uiImage: tab.image)
+            }
         }
     }
 
-    private var targetTabItem: some View {
-        VStack {
-            Image(.target)
-        }
-    }
-
-    private var uploadTabItem: some View {
-        VStack {
-            Image(.upload)
-        }
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(uploadFillGradient)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .strokeBorder(strokeGradient, lineWidth: 1).opacity(0.3)
-                )
-                
-           )
-            
-    }
-    
-    private var uploadFillGradient: LinearGradient {
-        LinearGradient(
-            colors: [
-                 Color.theme.primaryPurple, Color.theme.secondaryViolet
-            ],
-            startPoint: .center,
-            endPoint: .bottom
-        )
-    }
-    
-    private var strokeGradient: LinearGradient {
-        LinearGradient(
-            colors: [
-                Color.theme.primaryWhite, Color.theme.secondaryGray,
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-    }
-
-    private var analysisTabItem: some View {
-        VStack {
-            Image(.barchart)
-        }
-    }
-    
-    private var moreTabItem: some View {
-        VStack {
-            Image(.more)
+    private func switchToTab(tab: TabBarItem) {
+        withAnimation(.easeInOut) {
+            selection = tab
         }
     }
 }
+
+
+
 

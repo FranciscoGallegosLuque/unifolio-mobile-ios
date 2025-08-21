@@ -11,7 +11,7 @@ import SwiftUI
 struct unifolio_mobile_iosApp: App {
     var body: some Scene {
         WindowGroup {
-            TabBarView()
+            RootView()
         }
     }
 }
