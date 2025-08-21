@@ -11,7 +11,7 @@ struct AnalyticsView: View {
     var body: some View {
         VStack {
             Spacer()
-            TabBarView()
+//            TabBarView()
         }
         .background(Image(.background))
     }
