@@ -9,7 +9,25 @@ import SwiftUI
 
 struct TabBarView: View {
     var body: some View {
-        upload
+        
+        HStack(spacing: 40) {
+            homeTabItem
+            targetTabItem
+            uploadTabItem
+            analysisTabItem
+            moreTabItem
+        }
+        .padding(.vertical, 6)
+        .padding(.horizontal, 25)
+        .background(
+            Capsule()
+                .fill(Color.theme.secondaryBlack)
+                .overlay(
+                    Capsule()
+                        .strokeBorder(uploadStrokeGradient, lineWidth: 1).opacity(0.3)
+                )
+            
+        )
     }
 }
 
@@ -18,40 +36,64 @@ struct TabBarView: View {
 }
 
 extension TabBarView {
-    private var home: some View {
+    private var homeTabItem: some View {
         VStack {
             Image(.home)
         }
     }
 
-    private var target: some View {
+    private var targetTabItem: some View {
         VStack {
             Image(.target)
         }
     }
 
-    private var upload: some View {
+    private var uploadTabItem: some View {
         VStack {
             Image(.upload)
         }
-        .padding()
-        .background(uploadGradient)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(uploadFillGradient)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .strokeBorder(uploadStrokeGradient, lineWidth: 1).opacity(0.3)
+                )
+                
+           )
+            
     }
     
-    private var uploadGradient: LinearGradient {
+    private var uploadFillGradient: LinearGradient {
         LinearGradient(
             colors: [
-                Color.theme.secondaryViolet, Color.theme.primaryPurple,
+                 Color.theme.primaryPurple, Color.theme.secondaryViolet
             ],
-            startPoint: .bottomLeading,
-            endPoint: .topTrailing
+            startPoint: .center,
+            endPoint: .bottom
+        )
+    }
+    
+    private var uploadStrokeGradient: LinearGradient {
+        LinearGradient(
+            colors: [
+                Color.theme.primaryWhite, Color.theme.secondaryGray,
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
         )
     }
 
-    private var barchart: some View {
+    private var analysisTabItem: some View {
         VStack {
             Image(.barchart)
+        }
+    }
+    
+    private var moreTabItem: some View {
+        VStack {
+            Image(.more)
         }
     }
 }
