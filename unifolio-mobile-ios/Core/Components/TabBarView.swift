@@ -24,7 +24,7 @@ struct TabBarView: View {
                 .fill(Color.theme.secondaryBlack)
                 .overlay(
                     Capsule()
-                        .strokeBorder(uploadStrokeGradient, lineWidth: 1).opacity(0.3)
+                        .strokeBorder(strokeGradient, lineWidth: 1).opacity(0.3)
                 )
             
         )
@@ -58,7 +58,7 @@ extension TabBarView {
                 .fill(uploadFillGradient)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .strokeBorder(uploadStrokeGradient, lineWidth: 1).opacity(0.3)
+                        .strokeBorder(strokeGradient, lineWidth: 1).opacity(0.3)
                 )
                 
            )
@@ -75,7 +75,7 @@ extension TabBarView {
         )
     }
     
-    private var uploadStrokeGradient: LinearGradient {
+    private var strokeGradient: LinearGradient {
         LinearGradient(
             colors: [
                 Color.theme.primaryWhite, Color.theme.secondaryGray,
