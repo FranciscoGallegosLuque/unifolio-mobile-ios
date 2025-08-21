@@ -13,7 +13,7 @@ extension LinearGradient {
 }
 
 struct GradientTheme {
-    let strokeTabBarGradient = LinearGradient(
+    let strokeGradient = LinearGradient(
         colors: [
             Color.theme.primaryWhite, Color.theme.secondaryGray,
         ],

@@ -13,14 +13,17 @@ struct RootView: View {
     
     var body: some View {
         VStack {
+            HeaderView()
             Spacer()
             TabBarView(selection: $selectedTab)
         }
+        .background(Image(.background))
     }
 }
 
 #Preview {
     RootView()
 }
+
 
 
