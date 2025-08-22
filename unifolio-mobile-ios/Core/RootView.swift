@@ -14,10 +14,11 @@ struct RootView: View {
     var body: some View {
         VStack {
             HeaderView(selectedTab: $selectedTab)
-                .padding(.horizontal, Layout.Header.spacing)
+                .padding()
             ScrollView {
                 HomeView()
             }
+            .padding()
             TabBarView(selectedTab: $selectedTab)
         }
         .background(Image(.background))
@@ -28,11 +29,6 @@ struct RootView: View {
     RootView()
 }
 
-private enum Layout {
-    enum Header {
-        static let spacing: CGFloat = 10
-    }
-}
 
 
 

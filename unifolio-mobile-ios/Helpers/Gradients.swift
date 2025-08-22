@@ -13,13 +13,15 @@ extension LinearGradient {
 }
 
 struct GradientTheme {
-    let strokeGradient = LinearGradient(
-        colors: [
-            Color.theme.primaryWhite, Color.theme.secondaryGray,
-        ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-    )
+    func diagonalGradient(fromColor firstColor: Color, toColor lastColor: Color) -> LinearGradient {
+        return LinearGradient(
+            colors: [
+                firstColor, lastColor,
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
     
     let uploadButtonFillGradient = LinearGradient(
         colors: [

@@ -18,7 +18,8 @@ struct TabBarModifier: ViewModifier {
                     .fill(Color.theme.secondaryBlack)
                     .overlay(
                         Capsule()
-                            .strokeBorder(LinearGradient.theme.strokeGradient, lineWidth: 1).opacity(0.3)
+                            .strokeBorder(LinearGradient.theme.diagonalGradient(fromColor: .primaryWhite, toColor: .secondaryGray), lineWidth: 1).opacity(0.3)
+                            
                     )
 
             )

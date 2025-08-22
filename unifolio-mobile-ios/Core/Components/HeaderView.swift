@@ -58,7 +58,7 @@ extension HeaderView {
                             cornerRadius: Layout.IconButton.cornerRadius
                         )
                         .strokeBorder(
-                            LinearGradient.theme.strokeGradient,
+                            LinearGradient.theme.diagonalGradient(fromColor: .primaryWhite, toColor: .secondaryGray),
                             lineWidth: Layout.IconButton.strokeLineWidth
                         ).opacity(Layout.IconButton.opacity)
                     )
