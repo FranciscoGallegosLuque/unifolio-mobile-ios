@@ -9,18 +9,18 @@ import SwiftUI
 
 struct TabBarView: View {
 
-    @Binding var selection: TabBarItem
+    @Binding var selectedTab: TabBarItem
 
     var body: some View {
 
         HStack(spacing: 40) {
             ForEach(Tabs.defaultTabs, id: \.self) { tab in
                 Button {
-                    selection = tab
+                    selectedTab = tab
                 } label: {
                     tabView(tab: tab)
                 }
-                .tint(selection == tab ? .secondaryViolet : .secondaryGray)
+                .tint(selectedTab == tab ? .secondaryViolet : .secondaryGray)
             }
         }
         .tabBarModifier()
@@ -29,7 +29,7 @@ struct TabBarView: View {
 }
 
 #Preview {
-    TabBarView(selection: .constant(TabBarItem(name: .home, image: .home)))
+    TabBarView(selectedTab: .constant(TabBarItem(name: .home, image: .home)))
 }
 
 extension TabBarView {
@@ -49,7 +49,7 @@ extension TabBarView {
 
     private func switchToTab(tab: TabBarItem) {
         withAnimation(.easeInOut) {
-            selection = tab
+            selectedTab = tab
         }
     }
 }

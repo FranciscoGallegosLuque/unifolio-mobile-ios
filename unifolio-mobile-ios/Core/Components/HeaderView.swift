@@ -8,39 +8,75 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @Binding var selectedTab: TabBarItem
+    let homeTab = TabBarItem(name: .home, image: .home)
+    let userName = "Juan Pérez"
+    
     var body: some View {
         HStack {
-            Image(.logoLight)
-                .resizable()
-                .scaledToFit()
-            VStack(alignment: .leading) {
-                Text("Hola,")
-                Text("Juan Pérez").fontWeight(.semibold)
+            HStack(spacing: Layout.Header.spacing) {
+                Image(.logoLight)
+                    .resizable()
+                    .scaledToFit()
+                    .onTapGesture {
+                        selectedTab = homeTab
+                    }
+                VStack(alignment: .leading) {
+                    Text("Hola,")
+                    Text(userName).fontWeight(.semibold)
+                }
             }
+            .padding(.vertical, Layout.Header.padding)
             Spacer()
-            bellButton
+            iconButton(icon: "bell")
+            iconButton(icon: "person")
 
         }
-        .frame(height: 50)
+        .frame(height: Layout.Header.frameHeight)
     }
 }
 
 #Preview {
-    HeaderView()
+    HeaderView(selectedTab: .constant(TabBarItem(name: .home, image: .home)))
 }
 
 extension HeaderView {
-    private var bellButton: some View {
-        Image(systemName: "bell")
+
+    private func iconButton(icon: String) -> some View {
+        Image(systemName: icon)
             .foregroundStyle(.primaryWhite)
-            .padding(10)
+            .padding(Layout.IconButton.padding)
             .background(
-                RoundedRectangle(cornerRadius: 13)
-                    .fill(Color.theme.primaryWhite.opacity(0.3))
+                RoundedRectangle(cornerRadius: Layout.IconButton.cornerRadius)
+                    .fill(
+                        Color.theme.primaryWhite.opacity(
+                            Layout.IconButton.opacity
+                        )
+                    )
                     .overlay(
-                        RoundedRectangle(cornerRadius: 13)
-                            .strokeBorder(LinearGradient.theme.strokeGradient, lineWidth: 1.11).opacity(0.3)
+                        RoundedRectangle(
+                            cornerRadius: Layout.IconButton.cornerRadius
+                        )
+                        .strokeBorder(
+                            LinearGradient.theme.strokeGradient,
+                            lineWidth: Layout.IconButton.strokeLineWidth
+                        ).opacity(Layout.IconButton.opacity)
                     )
             )
+    }
+}
+
+private enum Layout {
+    enum Header {
+        static let spacing: CGFloat = 15
+        static let padding: CGFloat = 6.5
+        static let frameHeight: CGFloat = 40
+    }
+    
+    enum IconButton {
+        static let padding: CGFloat = 10
+        static let cornerRadius: CGFloat = 13
+        static let opacity: CGFloat = 0.3
+        static let strokeLineWidth: CGFloat = 1.11
     }
 }
