@@ -17,7 +17,7 @@ struct UploadButtonModifier: ViewModifier {
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .strokeBorder(
-                                LinearGradient.theme.strokeTabBarGradient,
+                                LinearGradient.theme.strokeGradient,
                                 lineWidth: 1
                             )
                             .opacity(0.3)

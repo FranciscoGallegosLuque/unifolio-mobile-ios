@@ -10,10 +10,9 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack {
-            Spacer()
-//            TabBarView(selection: )
+     
+            Text("Hola")
         }
-        .background(Image(.background))
     }
 }
 
