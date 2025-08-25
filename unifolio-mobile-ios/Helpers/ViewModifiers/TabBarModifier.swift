@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct TabBarModifier: ViewModifier {
-    
+
     func body(content: Content) -> some View {
         content
             .padding(.vertical, 6)
             .padding(.horizontal, 25)
             .background(
-                Capsule()
+                RoundedRectangle(cornerRadius: Layout.Background.cornerRadius)
                     .fill(Color.theme.secondaryBlack)
                     .overlay(
-                        Capsule()
-                            .strokeBorder(LinearGradient.theme.diagonalGradient(fromColor: .primaryWhite, toColor: .secondaryGray), lineWidth: 1).opacity(0.3)
-                            
+                        RoundedRectangle(
+                            cornerRadius: Layout.Background.cornerRadius
+                        )
+                        .strokeBorder(
+                            LinearGradient.theme.diagonalGradient(
+                                fromColor: .primaryWhite,
+                                toColor: .secondaryGray
+                            ),
+                            lineWidth: Layout.Background.lineWidth
+                        ).opacity(Layout.Background.opacity)
+
                     )
 
             )
@@ -29,5 +37,13 @@ struct TabBarModifier: ViewModifier {
 extension View {
     func tabBarModifier() -> some View {
         return self.modifier(TabBarModifier())
+    }
+}
+
+private enum Layout {
+    enum Background {
+        static let cornerRadius: CGFloat = 38
+        static let lineWidth: CGFloat = 1
+        static let opacity: CGFloat = 0.3
     }
 }

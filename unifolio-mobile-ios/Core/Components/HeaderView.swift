@@ -25,6 +25,7 @@ struct HeaderView: View {
                     Text("Hola,")
                     Text(userName).fontWeight(.semibold)
                 }
+                .foregroundStyle(.primaryWhite)
             }
             .padding(.vertical, Layout.Header.padding)
             Spacer()
