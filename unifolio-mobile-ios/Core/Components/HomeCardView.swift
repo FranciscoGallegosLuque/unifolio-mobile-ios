@@ -60,11 +60,11 @@ extension HomeCardView {
     
     private var buttonsSection: some View {
         HStack {
-            Text("Movimiento").fixedSize().frame(maxWidth: .infinity)
+            Text("Movimientos").fixedSize().frame(maxWidth: .infinity)
                 .padding(.vertical)
-            divider
-            Text("Más información").fixedSize().frame(maxWidth: .infinity)
-                .padding(.vertical)
+//            divider
+//            Text("Más información").fixedSize().frame(maxWidth: .infinity)
+//                .padding(.vertical)
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -89,16 +89,18 @@ extension HomeCardView {
     }
 
     private var percentageCardBackground: some View {
-        RoundedRectangle(
-            cornerRadius: Layout.PercentageChangeCardBackground.cornerRadius
-        )
+//        RoundedRectangle(
+//            cornerRadius: Layout.PercentageChangeCardBackground.cornerRadius
+//        )
+        Capsule()
         .fill(
             .primaryGreen.opacity(Layout.PercentageChangeCardBackground.opacity)
         )
         .overlay(
-            RoundedRectangle(
-                cornerRadius: Layout.PercentageChangeCardBackground.cornerRadius
-            )
+//            RoundedRectangle(
+//                cornerRadius: Layout.PercentageChangeCardBackground.cornerRadius
+//            )
+            Capsule()
             .strokeBorder(
                 LinearGradient.theme
                     .diagonalGradient(

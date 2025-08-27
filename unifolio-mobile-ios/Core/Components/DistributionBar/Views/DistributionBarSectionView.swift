@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct DistributionBarSectionView: View {
-    @State private var filter: DistributionBarFilter = .platform
+    @State private var filter: FilterOption
+    private let filterOptions: [FilterOption]
     
     init() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = .primaryPurple
+        let emptyFilterOption = FilterOption(name: "", displayName: "")
+        self.filterOptions = [
+            FilterOption(name: DistributionBarFilterOptions.platform.rawValue, displayName: "plataforma"),
+            FilterOption(name: DistributionBarFilterOptions.risk.rawValue, displayName: "riesgo"),
+            FilterOption(name: DistributionBarFilterOptions.asset.rawValue, displayName: "activo")
+        ]
+        self._filter = State(wrappedValue: filterOptions.first ?? emptyFilterOption)
     }
+    
 
     var body: some View {
         VStack(spacing: Layout.spacing) {
-            toggle
+            picker
             DistributionBarView(filter: filter)
         }
     }
@@ -26,7 +34,7 @@ struct DistributionBarSectionView: View {
     DistributionBarSectionView()
 }
 
-enum DistributionBarFilter: String, CaseIterable, Identifiable {
+enum DistributionBarFilterOptions: String, CaseIterable, Identifiable {
     case platform
     case risk
     case asset
@@ -35,7 +43,7 @@ enum DistributionBarFilter: String, CaseIterable, Identifiable {
 }
 
 extension DistributionBarSectionView {
-    func toggleText(filter: DistributionBarFilter) -> String {
+    func toggleText(filter: DistributionBarFilterOptions) -> String {
         switch filter {
         case .platform:
             return "Plataforma"
@@ -46,15 +54,17 @@ extension DistributionBarSectionView {
         }
     }
     
-    private var toggle: some View {
-        Picker("State", selection: $filter) {
-            ForEach(DistributionBarFilter.allCases) { filter in
-
-                Text(toggleText(filter: filter))
-                    .tag(filter.rawValue)
-            }
-        }
-        .pickerStyle(.segmented)
+    
+    
+    private var picker: some View {
+        TriplePicker(filterOptions: filterOptions, selectedFilterOption: $filter)
+//        Picker("State", selection: $filter) {
+//            ForEach(DistributionBarFilterOptions.allCases) { filter in
+//                Text(toggleText(filter: filter))
+//                    .tag(filter.rawValue)
+//            }
+//        }
+//        .pickerStyle(.segmented)
     }
 }
 

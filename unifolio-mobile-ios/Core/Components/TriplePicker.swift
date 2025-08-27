@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FilterOption: Identifiable {
+struct FilterOption: Identifiable, Equatable, Hashable {
     let id: String
 
     init(name: String, displayName: String) {
@@ -22,25 +22,29 @@ struct FilterOption: Identifiable {
 
 struct TriplePicker: View {
     let filterOptions: [FilterOption]
-    
-//    @Binding var selectedFilterOption: FilterOption? = filterOptions.first ?? nil
+    @Binding var selectedFilterOption: FilterOption
 
     var body: some View {
         HStack(spacing: 1) {
             ForEach(filterOptions) { filterOption in
-//                HStack {
-                    Text(filterOption.displayName.capitalized)
-                        .foregroundStyle(.primaryWhite)
-                        .font(.callout)
-                        .fontWeight(.light)
-//                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 32)
-                .background(Color.red)
+                Text(filterOption.displayName.capitalized)
+                    .foregroundStyle(.primaryWhite)
+                    .font(.callout)
+                    .fontWeight(.light)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 32)
+                    .background(
+                        selectedFilterOption == filterOption
+                            ? .primaryPurple : .secondaryBlack
+                    )
+                    .onTapGesture {
+                        withAnimation {
+                            selectedFilterOption = filterOption
+                        }
+                    }
             }
         }
-        
-        
+
         .clipShape(Capsule())
     }
 }
@@ -50,7 +54,10 @@ struct TriplePicker: View {
         filterOptions: [
             FilterOption(name: "platform", displayName: "plataforma"),
             FilterOption(name: "risk", displayName: "Riesgo"),
-            FilterOption(name: "asset", displayName: "Activo")
-        ]
+            FilterOption(name: "asset", displayName: "Activo"),
+        ],
+        selectedFilterOption: .constant(
+            FilterOption(name: "platform", displayName: "plataforma")
+        )
     )
 }

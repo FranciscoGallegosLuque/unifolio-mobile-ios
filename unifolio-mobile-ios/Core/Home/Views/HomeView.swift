@@ -11,7 +11,9 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HomeCardView()
-            DistributionBarSectionView().padding(.top, 40)
+            DistributionBarSectionView()
+                .padding(.top, 40)
+            
         }
     }
 }

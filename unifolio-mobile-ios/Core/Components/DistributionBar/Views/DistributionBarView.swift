@@ -31,37 +31,39 @@ struct MockData {
     ]
 
     static let mockRisk: [DistributionBarEntity] = [
-        DistributionBarEntity(name: "Bajo", color: .primaryBlue, percentage: 0.3),
+        DistributionBarEntity(name: "Bajo", color: .primaryPurple, percentage: 0.3),
         DistributionBarEntity(name: "Medio", color: .secondaryBlue, percentage: 0.5),
-        DistributionBarEntity(name: "Alto", color: .primaryGreen, percentage: 0.2),
+        DistributionBarEntity(name: "Alto", color: .secondaryViolet, percentage: 0.2),
     ]
     
     static let mockAsset: [DistributionBarEntity] = [
-        DistributionBarEntity(name: "Cripto", color: .primaryBlue, percentage: 0.45),
+        DistributionBarEntity(name: "Cripto", color: .primaryPurple, percentage: 0.45),
         DistributionBarEntity(name: "Bonos", color: .secondaryBlue, percentage: 0.25),
-        DistributionBarEntity(name: "Cash", color: .primaryGreen, percentage: 0.3),
+        DistributionBarEntity(name: "Cash", color: .secondaryViolet, percentage: 0.3),
     ]
 }
 
 struct DistributionBarView: View {
 
-    var filter: DistributionBarFilter
+    var filter: FilterOption
     let data: [DistributionBarEntity]
     private var numberOfEntities: Int { data.count }
     
-    init(filter: DistributionBarFilter = .platform) {
+    init(filter: FilterOption) {
         self.filter = filter
         let displayedData = displayedData(by: filter)
         self.data = displayedData
         
-        func displayedData(by filter: DistributionBarFilter) -> [DistributionBarEntity] {
-            switch filter {
-            case .platform:
+        func displayedData(by filter: FilterOption) -> [DistributionBarEntity] {
+            switch filter.name {
+            case DistributionBarFilterOptions.platform.rawValue:
                 return MockData.mockPlatforms
-            case .risk:
+            case DistributionBarFilterOptions.risk.rawValue:
                 return MockData.mockRisk
-            case .asset:
+            case DistributionBarFilterOptions.asset.rawValue:
                 return MockData.mockAsset
+            default:
+                return MockData.mockPlatforms
             }
         }
     }
@@ -75,7 +77,7 @@ struct DistributionBarView: View {
 }
 
 #Preview {
-    DistributionBarView()
+    DistributionBarView(filter: FilterOption(name: "platform", displayName: "plataforma"))
 }
 
 extension DistributionBarView {
@@ -139,6 +141,7 @@ extension DistributionBarView {
             )
         }
         .font(.caption2)
+
 
     }
 

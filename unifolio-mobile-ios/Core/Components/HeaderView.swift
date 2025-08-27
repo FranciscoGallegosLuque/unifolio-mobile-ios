@@ -21,7 +21,7 @@ struct HeaderView: View {
                     .onTapGesture {
                         selectedTab = homeTab
                     }
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: Layout.Greeting.spacing) {
                     Text("Hola,")
                     Text(userName).fontWeight(.semibold)
                 }
@@ -72,6 +72,10 @@ private enum Layout {
         static let spacing: CGFloat = 15
         static let padding: CGFloat = 6.5
         static let frameHeight: CGFloat = 40
+    }
+    
+    enum Greeting {
+        static let spacing: CGFloat = 0
     }
     
     enum IconButton {
