@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack {
-            HomeCardView()
+            HomeCardView2()
             DistributionBarSectionView()
                 .padding(.top, 40)
             

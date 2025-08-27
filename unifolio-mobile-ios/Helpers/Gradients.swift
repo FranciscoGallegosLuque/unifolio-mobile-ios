@@ -25,7 +25,7 @@ struct GradientTheme {
     
     let uploadButtonFillGradient = LinearGradient(
         colors: [
-            Color.theme.primaryPurple, Color.theme.secondaryViolet,
+            Color.theme.primaryPurple, Color.theme.secondaryPurple,
         ],
         startPoint: .center,
         endPoint: .bottom

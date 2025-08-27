@@ -57,9 +57,9 @@ extension HomeCardView2 {
 
     private var buttonsSection: some View {
         HStack {
-            Text("Movimientos").frame(maxWidth: .infinity).padding(.vertical)
-
+            Text("Movimientos")
         }
+        .padding(.vertical, 12)
     }
 
     private var divider: some View {
