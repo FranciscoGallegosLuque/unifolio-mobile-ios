@@ -21,10 +21,11 @@ struct HeaderView: View {
                     .onTapGesture {
                         selectedTab = homeTab
                     }
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: Layout.Greeting.spacing) {
                     Text("Hola,")
                     Text(userName).fontWeight(.semibold)
                 }
+                .foregroundStyle(.primaryWhite)
             }
             .padding(.vertical, Layout.Header.padding)
             Spacer()
@@ -58,7 +59,7 @@ extension HeaderView {
                             cornerRadius: Layout.IconButton.cornerRadius
                         )
                         .strokeBorder(
-                            LinearGradient.theme.strokeGradient,
+                            LinearGradient.theme.diagonalGradient(fromColor: .primaryWhite, toColor: .secondaryGray),
                             lineWidth: Layout.IconButton.strokeLineWidth
                         ).opacity(Layout.IconButton.opacity)
                     )
@@ -71,6 +72,10 @@ private enum Layout {
         static let spacing: CGFloat = 15
         static let padding: CGFloat = 6.5
         static let frameHeight: CGFloat = 40
+    }
+    
+    enum Greeting {
+        static let spacing: CGFloat = 0
     }
     
     enum IconButton {

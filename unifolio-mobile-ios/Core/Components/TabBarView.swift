@@ -20,7 +20,7 @@ struct TabBarView: View {
                 } label: {
                     tabView(tab: tab)
                 }
-                .tint(selectedTab == tab ? .secondaryViolet : .secondaryGray)
+                .tint(selectedTab == tab ? .secondaryPurple : .secondaryGray)
             }
         }
         .tabBarModifier()
