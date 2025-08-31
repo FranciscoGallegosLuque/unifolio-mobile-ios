@@ -26,20 +26,20 @@ struct MockData {
     static let mockPlatforms: [DistributionBarEntity] = [
         DistributionBarEntity(name: "Binance", color: .primaryPurple, percentage: 0.3),
         DistributionBarEntity(name: "Balanz", color: .secondaryBlue, percentage: 0.4),
-        DistributionBarEntity(name: "Cocos", color: .secondaryViolet, percentage: 0.2),
+        DistributionBarEntity(name: "Cocos", color: .secondaryPurple, percentage: 0.2),
         DistributionBarEntity(name: "Otros", color: .primaryGreen, percentage: 0.1),
     ]
 
     static let mockRisk: [DistributionBarEntity] = [
         DistributionBarEntity(name: "Bajo", color: .primaryPurple, percentage: 0.3),
         DistributionBarEntity(name: "Medio", color: .secondaryBlue, percentage: 0.5),
-        DistributionBarEntity(name: "Alto", color: .secondaryViolet, percentage: 0.2),
+        DistributionBarEntity(name: "Alto", color: .secondaryPurple, percentage: 0.2),
     ]
     
     static let mockAsset: [DistributionBarEntity] = [
         DistributionBarEntity(name: "Cripto", color: .primaryPurple, percentage: 0.45),
         DistributionBarEntity(name: "Bonos", color: .secondaryBlue, percentage: 0.25),
-        DistributionBarEntity(name: "Cash", color: .secondaryViolet, percentage: 0.3),
+        DistributionBarEntity(name: "Cash", color: .secondaryPurple, percentage: 0.3),
     ]
 }
 
@@ -153,7 +153,7 @@ private enum Layout {
     }
 
     enum Bar {
-        static let spacing: CGFloat = 0
+        static let spacing: CGFloat = 1
         static let height: CGFloat = 32
     }
 

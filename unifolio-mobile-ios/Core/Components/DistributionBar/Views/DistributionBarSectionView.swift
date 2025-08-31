@@ -58,13 +58,6 @@ extension DistributionBarSectionView {
     
     private var picker: some View {
         TriplePicker(filterOptions: filterOptions, selectedFilterOption: $filter)
-//        Picker("State", selection: $filter) {
-//            ForEach(DistributionBarFilterOptions.allCases) { filter in
-//                Text(toggleText(filter: filter))
-//                    .tag(filter.rawValue)
-//            }
-//        }
-//        .pickerStyle(.segmented)
     }
 }
 
